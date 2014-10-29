@@ -1,0 +1,24 @@
+#include<stdio.h>
+
+int main()
+{
+	FILE *fp;
+	char str[60];
+	fp = fopen(/dev/spidev3.1 , "w+b");
+	if(fp == NULL) {
+        	perror("Error opening file");
+	        return(-1);
+	}
+	else
+		printf("successful");
+	if( fgets (str, 60, fp)!=NULL ) {
+	      /* writing content to stdout */
+	      printf("hello");
+	      puts(str);
+	}
+	else
+		printf("no reading");
+	fclose(fp);
+	   
+	return(0);
+	}

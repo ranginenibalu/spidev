@@ -1,0 +1,83 @@
+#include <pthread.h>
+#include <unistd.h>
+#include <iostream>
+
+
+using namespace std ;
+
+void  * function1(void * argument);
+void  * function2(void * argument);
+void  * function3(void * argument);
+void  * function4(void * argument);
+void  * queue(void * argument);
+
+
+void * function1(void * argument)
+{
+	    //cout << " hello " << endl ;
+	    //sleep(2); 
+	    //cout << " hello " << endl ;// fall alseep here for 2 seconds...
+	    
+	    pthread_t t5;
+	    cout<<"the pgm is in function1 \n";
+	    
+	    pthread_create( &t5, NULL, queue, NULL);
+	    return 0;
+	
+    
+}
+
+void * function2(void * argument)
+{
+
+	    //cout << " world "  << endl ;
+            cout<<"the pgm is in function2 \n";
+	    queue( NULL );
+
+	    return 0;
+     
+}
+
+void * queue(void * argument)
+{
+	int i;
+	cout<<"now it is in the queue\n";
+	
+	pthread_t t3, t4 ; // declare 2 threads.
+        pthread_create( &t3, NULL, function3, NULL); // create a thread running function3
+        pthread_create( &t4, NULL, function4,NULL); // create a thread running function4
+
+}
+
+void * function3(void * argument)
+{
+	cout<<"the pgm is in function3 \n";
+	
+	return 0;
+}
+
+void * function4(void * argument)
+{
+	cout<<"the pgm is in function4 \n";
+	return 0;
+		
+}
+
+
+
+	
+int main( void )
+{
+    pthread_t t1, t2 ; // declare 2 threads.
+    pthread_create( &t1, NULL, function1, NULL); // create a thread running function1
+    pthread_create( &t2, NULL, function2,NULL); // create a thread running function2
+
+    // Because all created threads are terminated when main() finishes, we have
+    // to give the threads some time to finish. Unfortunately for function1, main()
+    // will give only 1 second, but function1 needs at least 2 seconds. So function1 will
+    // probably be terminated before it can finish. This is a BAD way to manage threads.
+    sleep(2);
+
+    return 0;
+}
+

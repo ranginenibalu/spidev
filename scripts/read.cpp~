@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include <fstream>
+#include<iostream>
+#include<math.h>
+#include<string.h>
+#include<stdlib.h>
+
+using namespace std;
+
+struct sensor_info
+{
+	short int net_id; //2 bytes
+	char addr[9]; //8 bytes
+	unsigned char sensor_id; //1 byte
+	char sensor_val[7]; // 6 bytes
+	short int timestamp; //2 bytes
+	short int lqi; //2 bytes
+};
+
+int main()
+{
+	fstream fp;
+	fp.open("store1.dat", ios::in|ios::binary);
+	sensor_info si;
+	fp.read((char *)&si, sizeof(struct sensor_info));
+	
+	cout<<"netid:"<<si.net_id<<endl;
+	cout<<"addr:"<<si.addr<<endl;
+	cout<<"sensor_id:"<<si.sensor_id<<endl;
+	cout<<"sensor_val:"<<si.sensor_val<<endl;
+	cout<<"timestamp:"<<si.timestamp<<endl;
+	cout<<"lqi:"<<si.lqi<<endl;
+	
+	return 0;
+}

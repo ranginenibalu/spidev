@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+#include <unistd.h>
+#include<iostream>
+#include<string.h>
+
+using namespace std ;
+
+struct thread_data{
+   int  thread_id;
+   int  sum;
+   char *message;
+};
+
+struct thread_data thread_data_array;
+
+void *PrintHello(void *threadarg)
+{
+   //int my_data;
+   int sum;
+   int taskid;
+  // char * hello_msg;
+   
+   struct thread_data *my_data;
+   my_data = (struct thread_data *) threadarg;
+   taskid = my_data->thread_id;
+   sum = my_data->sum;
+  // strcpy(hello_msg, my_data->message);
+   
+   cout<<"id is : "<< taskid<< endl;
+   cout<<"sum is "<< sum << endl;
+  // cout<<"hello msg "<< hello_msg << endl;
+   
+}
+
+int main (int argc, char *argv[])
+{
+	//char * hi; //"hello";
+	//strcpy(hi, "hello");
+	cout<<" message is "<< hi ; 
+	pthread_t threads;
+	int t=0;
+   thread_data_array.thread_id = t;
+   thread_data_array.sum = 10;
+  // thread_data_array.message =hi;
+   
+   pthread_create(&threads, NULL, PrintHello, 
+        (void *) &thread_data_array);
+ 
+   
+   
+    pthread_exit(NULL);
+}

@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<pthread.h>
+#include "print.c"
+
+
+
+int main()
+{
+	pthread_t t[5];
+	int i;
+	while(1)
+	{
+		if(count<5)
+		{
+			for(i=0;i<5;i++)
+			{
+				if(flag[i]==0)
+				{	
+					pthread_create(&t[i], NULL, print, i);
+					flag[i]=1;
+					count++;
+					break;
+				}
+			}
+			
+		}
+		else
+			sleep(3);
+	}
+	
+	
+	return 0;
+}

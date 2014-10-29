@@ -1,0 +1,10 @@
+#include<stdio.h>
+
+int main()
+{
+	short int si,p1,p2;
+	p1=6, p2=6;
+	si=(p1<<8) | (p2);
+	printf("%d",si);
+	return 0;
+}

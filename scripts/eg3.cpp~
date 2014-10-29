@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+#include <unistd.h>
+#include<iostream>
+
+using namespace std ;
+
+
+void* print_thread_num(void *index);
+
+
+
+int main(int argc, char** argv) 
+{
+
+    int i;
+    pthread_t threads[3];
+
+    for (i = 0; i < 3; i++) 
+    {
+        void *index = &i;
+        cout<<" Creating thread "<<  i << endl ;
+        pthread_create(&threads[i], NULL, print_thread_num, index);
+        sleep(1);
+    }
+    pthread_exit(NULL);
+}
+
+
+
+
+void* print_thread_num(void *index) 
+{
+    int i = *(int*)index;
+    cout<<" I am the thread at index "<< i << endl ;
+    
+    pthread_exit(NULL);
+}

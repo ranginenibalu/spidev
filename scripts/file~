@@ -1,0 +1,14 @@
+#include<iostream>
+#include<string.h>
+
+
+using namespace std;
+
+int main()
+{
+	char a[]="hello";
+	char b[]="ab";
+	
+	strcpy(b,a);
+	cout<<b;
+}

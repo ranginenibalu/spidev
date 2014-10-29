@@ -1,0 +1,16 @@
+#include<stdio.h>
+
+int main()
+{	
+	char buff[30];
+	FILE *fp1, *fp2;
+	fp1 = fopen("/dev/ttyO1","w");
+	fprintf(fp1,"hello");
+	fclose(fp1);
+	
+	fp2 = fopen("/dev/ttyO1","r");
+	fscanf(fp2, "%s", buff);
+	fclose(fp2);
+	
+	printf("%s",buff);
+}
